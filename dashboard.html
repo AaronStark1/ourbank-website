@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-content-wrapper">
+        
+        <header class="welcome-message-header">
+            <div class="welcome-text-group">
+                <h1 class="welcome-title">Welcome, <span id="userNameDisplay">User!</span></h1> 
+                <p class="welcome-subtitle">Your banking dashboard is ready.</p>
+            </div>
+            <button class="logout-button button" onclick="handleLogout()">LOGOUT</button>
+        </header>
+
+        <div class="main">
+            <div class="container a-container" id="a-container">
+                <form class="form" id="a-form" onsubmit="handleWithdrawal(event)">
+                    <h2 class="form_title title">Withdraw</h2>
+                    <span class="form__span">You are about to withdraw money from your acccount.</span>
+                    <input class="form__input" type="number" placeholder="Enter amount to withdraw" id="withdrawAmount" required min="0.01" step="0.01">
+                    <input class="form__input" type="password" placeholder="Enter your password" id="withdrawPassword" required>
+                    <button class="form__button button submit">WITHDRAW</button>
+                    <span class="form__balance">Balance: ₹<span id="currentBalanceDisplayWithdraw">0.00</span></span>
+                </form>
+            </div>
+            <div class="container b-container" id="b-container">
+                <form class="form" id="b-form" onsubmit="handleDeposit(event)">
+                    <h2 class="form_title title">Deposit</h2>
+                    <span class="form__span">You are about to deposit money into your account.</span>
+                    <input class="form__input" type="number" placeholder="Enter amount to deposit" id="depositAmount" required min="0.01" step="0.01">
+                    <input class="form__input" type="password" placeholder="Enter your password" id="depositPassword" required>
+                    <button class="form__button button submit">DEPOSIT</button>
+                    <span class="form__balance">Balance: ₹<span id="currentBalanceDisplayDeposit">0.00</span></span>
+                </form>
+            </div>
+            <div class="switch" id="switch-cnt">
+                <div class="switch__circle"></div>
+                <div class="switch__circle switch__circle--t"></div>
+                <div class="switch__container" id="switch-c1">
+                    <h2 class="switch__title title">Deposit</h2>
+                    <p class="switch__description description">Add funds to your account.
+                    </p>
+                    <button class="switch__button button switch-btn">GO TO DEPOSIT</button>
+                </div>
+                <div class="switch__container is-hidden" id="switch-c2">
+                    <h2 class="switch__title title">Withdrawal</h2>
+                    <p class="switch__description description">Retrieve funds from your account.</p>
+                    <button class="switch__button button switch-btn">GO TO WITHDRAWAL</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-section-wrapper">
+            <h2 class="history-title">Transaction History</h2>
+            <div id="transactionHistoryContainer" class="transaction-history-container">
+                </div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

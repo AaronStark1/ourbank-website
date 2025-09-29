@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Bank</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/9720/9720576.png" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- lottiefiles  -->
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
+    <!-- animate on scroll  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/9720/9720576.png" alt="Bank Logo">
+            <p style="color: white; padding-left: 2ch; font-weight: 500; font-size: large;">Our Bank</p>
+        </div>
+
+
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul>
+            <li><a href="./registration.html">Register</a></li>
+            <li><a href="./login.html">Login</a></li>
+
+        </ul>
+    </nav>
+
+
+    <div class="headline">
+        <div class="inner">
+            <h1>Welcome to Our Bank</h1>
+            <p>Your Money, Your Future, Our Priority.</p>
+        </div>
+    </div>
+
+    <!-- Feature Section -->
+    <section class="feature-section">
+        <div  class="feature-content">
+            <div data-aos="fade-down" class="feature-text">
+                <h2>Smart Banking Made Simple</h2>
+                <p>Manage your finances effortlessly with our secure and user-friendly platform. Track transactions,
+                    deposit and withdraw funds, plan your future— all in one place. Already banking with us? Log into your account below</p>
+                <a href="./login.html"><button class="cta-btn">Continue Securely →</button></a>
+            </div>
+            <div  class="feature-image">
+                <dotlottie-wc src="https://lottie.host/a175d524-2f4f-48bc-a32b-688a1c358402/F6h6FEEyuK.lottie"
+                    style="width: 600px;height: 600px" autoplay loop></dotlottie-wc>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 Cards Section -->
+    <section class="cards-section">
+        <h2 class="cards-title">Why Choose Our Bank?</h2>
+        <div class="cards-container">
+            <div data-aos="fade-up-right" class="card">
+                <img src="https://cdn-icons-png.flaticon.com/128/7041/7041387.png" alt="Secure Transactions">
+                <h3>Secure Transactions</h3>
+                <p>Your safety is our top priority. Every transaction is encrypted and monitored 24/7.</p>
+            </div>
+            <div data-aos="fade-up" class="card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Easy Access">
+                <h3>Reward Points</h3>
+                <p>Reward points can be redeemed against your online and select offline purchases.</p>
+            </div>
+            <div data-aos="fade-up-left" class="card">
+                <img src="https://cdn-icons-png.flaticon.com/128/950/950237.png" alt="24/7 Support">
+                <h3>24/7 Support</h3>
+                <p>Need help? Our dedicated team is always here to assist you — day or night.</p>
+            </div>
+        </div>
+    </section>
+
+<!-- Brand Palette Section -->
+<section class="color-palette-section">
+  <h2 class="palette-title">Services</h2>
+  <div class="bank-palette">
+    
+    <div data-aos="fade-right" data-aos-duration="1000" class="bank-color" data-desc="A savings account is a secure deposit account that lets you store your money safely while earning interest on the balance.">
+      <div class="bank-color-text">
+        <h3>Savings Account</h3>
+        <p>Zero Charge Transactions</p>
+      </div>
+    </div>
+
+    <div data-aos="flip-up" data-aos-duration="1000" class="bank-color" data-desc="A personal loan is an unsecured borrowing option that makes it easy to access funds when you need them.">
+      <div class="bank-color-text">
+        <h3>Personal Loan</h3>
+        <p>Foreclose anytime with ZERO charge</p>
+      </div>
+    </div>
+
+    <div data-aos="flip-down" data-aos-duration="1000" class="bank-color" data-desc="A Fixed Deposit Account is a form of investment instrument that allows customers to grow their savings at a fixed rate for a fixed period of time.">
+      <div class="bank-color-text">
+        <h3>Fixed Deposit</h3>
+        <p>Earn upto 7.00% p.a</p>
+      </div>
+    </div>
+
+    <div data-aos="fade-left" data-aos-duration="1000" class="bank-color" data-desc="A Mutual Fund is a professionally managed investment tool that pools money from multiple investors to purchase a diversified portfolio of stocks, bonds, or other securities.">
+      <div class="bank-color-text">
+        <h3>Mutual Funds</h3>
+        <p>Maximise your wealth with market-linked returns</p>
+      </div>
+    </div>
+
+  </div>
+  <p class="palette-desc">Hover on any card to learn more about it .</p>
+</section>
+
+
+
+    <!-- colorlib footer  -->
+    <div id="footer-container"></div>
+
+    <script>
+        const footerContainer = document.getElementById('footer-container');
+
+        // Create a shadow root
+        const shadow = footerContainer.attachShadow({ mode: 'open' });
+
+        fetch('./footer/html/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                shadow.innerHTML = html;
+
+                // Optional: If footer.html has CSS <link>, move it into shadow
+                shadow.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+                    const newLink = document.createElement('link');
+                    newLink.rel = 'stylesheet';
+                    newLink.href = link.href;
+                    shadow.appendChild(newLink);
+                });
+
+                // Scripts in shadow DOM need special handling (can be injected separately)
+            });
+
+    </script>
+
+    <script>
+        document.addEventListener("scroll", () => {
+            const headline = document.querySelector(".headline");
+            const inner = document.querySelector(".inner");
+            const nav = document.querySelector("nav");
+            const navHeight = 75;
+            const scrollTop = window.scrollY;
+
+            const headlineHeight = headline.offsetHeight - navHeight;
+
+            // Fade headline
+            let opacity = 1 - scrollTop / headlineHeight;
+            if (opacity < 0) opacity = 0;
+            headline.style.opacity = opacity;
+
+            // Move headline text slightly
+            inner.style.transform = `translate(-50%, calc(-50% + ${scrollTop * 0.4}px))`;
+
+            // Add or remove .scrolled class to nav
+            if (scrollTop > headlineHeight) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        });
+
+    </script>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active'); // animate to "X"
+        });
+
+    </script>
+    <script>
+  AOS.init();
+</script>
+</body>
+
+</html>
