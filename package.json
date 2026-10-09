@@ -1,0 +1,14 @@
+{
+  "name": "ourbank-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Our Bank – Interactive Banking Dashboard UI",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

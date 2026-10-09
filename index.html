@@ -1,193 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Bank</title>
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/9720/9720576.png" type="image/x-icon">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- lottiefiles  -->
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
-    <!-- animate on scroll  -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OurBank | Banking built around you</title>
+  <meta name="description" content="OurBank: save, borrow and invest from one secure account. Deposit and withdraw in seconds and watch your money grow.">
+  <meta name="theme-color" content="#f6f3ec">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23264653' stroke-width='2.4'/%3E%3Cpolyline points='8.5,20.5 13.5,14.5 17.5,17.5 23.5,9.5' fill='none' stroke='%232a9d8f' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='23.5' cy='9.5' r='2.2' fill='%23e9c46a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
 
-<body>
-    <nav>
-        <div class="logo">
-            <img src="https://cdn-icons-png.flaticon.com/512/9720/9720576.png" alt="Bank Logo">
-            <p style="color: white; padding-left: 2ch; font-weight: 500; font-size: large;">Our Bank</p>
-        </div>
+<body class="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
+  <header class="site-nav" data-nav>
+    <div class="container-wide">
+      <a class="brand" href="./index.html" aria-label="OurBank home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <circle class="ring" cx="16" cy="16" r="13"/>
+          <polyline class="rise" points="8.5,20.5 13.5,14.5 17.5,17.5 23.5,9.5"/>
+          <circle class="dot" cx="23.5" cy="9.5" r="2.2"/>
+        </svg>
+        <span>OurBank</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="./registration.html">Register</a>
+        <a class="btn btn-sm" href="./login.html">Login</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-        <div class="menu-toggle" id="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <ul>
-            <li><a href="./registration.html">Register</a></li>
-            <li><a href="./login.html">Login</a></li>
-
-        </ul>
+  <div class="mobile-menu" id="mobile-menu">
+    <svg class="mobile-menu-art" viewBox="0 0 390 460" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M-10 420 C 90 420, 150 380, 210 300 S 320 120, 400 90" pathLength="1"/>
+      <path class="dash" d="M-10 445 C 100 445, 170 410, 235 330 S 335 160, 400 130" pathLength="1"/>
+      <circle cx="360" cy="105" r="5"/>
+    </svg>
+    <nav class="mobile-menu-links" aria-label="Mobile">
+      <a href="./registration.html">Register <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="./login.html">Login <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#services">Services <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </nav>
-
-
-    <div class="headline">
-        <div class="inner">
-            <h1>Welcome to Our Bank</h1>
-            <p>Your Money, Your Future, Our Priority.</p>
-        </div>
+    <div class="mobile-menu-foot">
+      <span>Your money, your future, our priority.</span>
+      <span class="mono">OurBank</span>
     </div>
-
-    <!-- Feature Section -->
-    <section class="feature-section">
-        <div  class="feature-content">
-            <div data-aos="fade-down" class="feature-text">
-                <h2>Smart Banking Made Simple</h2>
-                <p>Manage your finances effortlessly with our secure and user-friendly platform. Track transactions,
-                    deposit and withdraw funds, plan your future— all in one place. Already banking with us? Log into your account below</p>
-                <a href="./login.html"><button class="cta-btn">Continue Securely →</button></a>
-            </div>
-            <div  class="feature-image">
-                <dotlottie-wc src="https://lottie.host/a175d524-2f4f-48bc-a32b-688a1c358402/F6h6FEEyuK.lottie"
-                    style="width: 600px;height: 600px" autoplay loop></dotlottie-wc>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3 Cards Section -->
-    <section class="cards-section">
-        <h2 class="cards-title">Why Choose Our Bank?</h2>
-        <div class="cards-container">
-            <div data-aos="fade-up-right" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/128/7041/7041387.png" alt="Secure Transactions">
-                <h3>Secure Transactions</h3>
-                <p>Your safety is our top priority. Every transaction is encrypted and monitored 24/7.</p>
-            </div>
-            <div data-aos="fade-up" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Easy Access">
-                <h3>Reward Points</h3>
-                <p>Reward points can be redeemed against your online and select offline purchases.</p>
-            </div>
-            <div data-aos="fade-up-left" class="card">
-                <img src="https://cdn-icons-png.flaticon.com/128/950/950237.png" alt="24/7 Support">
-                <h3>24/7 Support</h3>
-                <p>Need help? Our dedicated team is always here to assist you — day or night.</p>
-            </div>
-        </div>
-    </section>
-
-<!-- Brand Palette Section -->
-<section class="color-palette-section">
-  <h2 class="palette-title">Services</h2>
-  <div class="bank-palette">
-    
-    <div data-aos="fade-right" data-aos-duration="1000" class="bank-color" data-desc="A savings account is a secure deposit account that lets you store your money safely while earning interest on the balance.">
-      <div class="bank-color-text">
-        <h3>Savings Account</h3>
-        <p>Zero Charge Transactions</p>
-      </div>
-    </div>
-
-    <div data-aos="flip-up" data-aos-duration="1000" class="bank-color" data-desc="A personal loan is an unsecured borrowing option that makes it easy to access funds when you need them.">
-      <div class="bank-color-text">
-        <h3>Personal Loan</h3>
-        <p>Foreclose anytime with ZERO charge</p>
-      </div>
-    </div>
-
-    <div data-aos="flip-down" data-aos-duration="1000" class="bank-color" data-desc="A Fixed Deposit Account is a form of investment instrument that allows customers to grow their savings at a fixed rate for a fixed period of time.">
-      <div class="bank-color-text">
-        <h3>Fixed Deposit</h3>
-        <p>Earn upto 7.00% p.a</p>
-      </div>
-    </div>
-
-    <div data-aos="fade-left" data-aos-duration="1000" class="bank-color" data-desc="A Mutual Fund is a professionally managed investment tool that pools money from multiple investors to purchase a diversified portfolio of stocks, bonds, or other securities.">
-      <div class="bank-color-text">
-        <h3>Mutual Funds</h3>
-        <p>Maximise your wealth with market-linked returns</p>
-      </div>
-    </div>
-
   </div>
-  <p class="palette-desc">Hover on any card to learn more about it .</p>
-</section>
 
+  <main id="main">
 
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="display lines" id="hero-title">
+            <span class="line"><span>Banking</span></span>
+            <span class="line"><span>built around</span></span>
+            <span class="line"><span class="hero-you">you.
+              <svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 50 2, 120 2, 198 8" pathLength="1"/></svg>
+            </span></span>
+          </h1>
+          <p class="lead hero-lead">Your money, your future, our priority. Save, borrow and invest from one secure account, and move money in seconds.</p>
+          <div class="hero-actions">
+            <a class="btn btn-lg" href="./registration.html">Open an account
+              <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-lg btn-secondary" href="./login.html">Login</a>
+          </div>
+        </div>
 
-    <!-- colorlib footer  -->
-    <div id="footer-container"></div>
+        <!-- Growth path visualisation: deposit -> savings -> growth -->
+        <figure class="hero-viz" aria-label="Illustration: a deposit of fifty thousand rupees moves into a savings account earning seven percent a year and grows to fifty three thousand five hundred rupees">
+          <div class="viz-layer viz-rules" aria-hidden="true">
+            <svg viewBox="0 0 600 620" preserveAspectRatio="xMidYMid meet">
+              <g class="rules">
+                <line x1="30" y1="110" x2="570" y2="110"/>
+                <line x1="30" y1="220" x2="570" y2="220"/>
+                <line x1="30" y1="330" x2="570" y2="330"/>
+                <line x1="30" y1="440" x2="570" y2="440"/>
+                <line x1="30" y1="550" x2="570" y2="550"/>
+              </g>
+            </svg>
+          </div>
+          <div class="viz-layer viz-path" aria-hidden="true">
+            <svg viewBox="0 0 600 620" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#2a9d8f" stop-opacity="0.22"/>
+                  <stop offset="1" stop-color="#2a9d8f" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="area" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110 L540 600 L70 600 Z" fill="url(#areaFill)"/>
+              <path class="flow" id="flowPath" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110" pathLength="1"/>
+              <path class="flow-ghost" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110"/>
+              <g class="particles">
+                <circle r="5"><animateMotion dur="4.8s" repeatCount="indefinite" begin="2.2s"><mpath href="#flowPath"/></animateMotion></circle>
+                <circle r="3.5"><animateMotion dur="4.8s" repeatCount="indefinite" begin="3.8s"><mpath href="#flowPath"/></animateMotion></circle>
+                <circle r="4.2"><animateMotion dur="4.8s" repeatCount="indefinite" begin="5.4s"><mpath href="#flowPath"/></animateMotion></circle>
+              </g>
+            </svg>
+          </div>
+          <div class="viz-layer viz-nodes" aria-hidden="true">
+            <span class="viz-node node-a"></span>
+            <span class="viz-node node-b"></span>
+            <span class="viz-node node-c"></span>
+            <div class="viz-label label-a">
+              <span class="label">Deposit</span>
+              <span class="viz-amount num">₹50,000</span>
+            </div>
+            <div class="viz-label label-b">
+              <span class="label">Savings account</span>
+              <span class="viz-rate">7.00% p.a.</span>
+            </div>
+            <div class="viz-label label-c">
+              <span class="viz-big num" id="hero-big" data-value="50000">₹50,000</span>
+              <span class="label">After one year</span>
+            </div>
+            <span class="viz-delta num" id="hero-delta">+₹3,500</span>
+          </div>
+        </figure>
+      </div>
+    </section>
 
-    <script>
-        const footerContainer = document.getElementById('footer-container');
+    <!-- ============ MONEY MOVEMENT ============ -->
+    <section class="flow section" id="flow" aria-labelledby="flow-title">
+      <div class="container">
+        <div class="flow-head">
+          <h2 class="h2" id="flow-title" data-reveal>Smart banking made simple</h2>
+          <p class="lead" data-reveal data-delay="100">Manage your finances effortlessly with our secure and user-friendly platform. Track transactions, deposit and withdraw funds, and plan your future, all in one place.</p>
+        </div>
 
-        // Create a shadow root
-        const shadow = footerContainer.attachShadow({ mode: 'open' });
+        <figure class="transfer" data-reveal="scale" data-delay="150" data-loop aria-label="Illustration: money moves from your account into savings and then into an investment">
+          <div class="transfer-track">
+            <div class="t-node">
+              <span class="label">Your account</span>
+              <span class="t-value num">₹1,24,500</span>
+            </div>
+            <div class="t-link" aria-hidden="true">
+              <span class="t-dash"></span>
+              <span class="t-chip num">₹50,000</span>
+            </div>
+            <div class="t-node t-node-mid">
+              <span class="label">Savings</span>
+              <span class="t-value num">₹50,000</span>
+              <span class="t-meta value">7.00% p.a.</span>
+            </div>
+            <div class="t-link" aria-hidden="true">
+              <span class="t-dash"></span>
+              <span class="t-chip num">₹2,450</span>
+            </div>
+            <div class="t-node">
+              <span class="label">Investment</span>
+              <span class="t-value num">₹2,450</span>
+              <span class="t-meta credit">+12.8%</span>
+            </div>
+          </div>
+          <figcaption class="label">Illustrative example</figcaption>
+        </figure>
 
-        fetch('./footer/html/footer.html')
-            .then(res => res.text())
-            .then(html => {
-                shadow.innerHTML = html;
+        <div class="flow-foot" data-reveal data-delay="100">
+          <p class="lead">Already banking with us? Log in to your account.</p>
+          <a class="btn" href="./login.html">Continue securely
+            <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
 
-                // Optional: If footer.html has CSS <link>, move it into shadow
-                shadow.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-                    const newLink = document.createElement('link');
-                    newLink.rel = 'stylesheet';
-                    newLink.href = link.href;
-                    shadow.appendChild(newLink);
-                });
+    <!-- ============ WHY CHOOSE ============ -->
+    <section class="why section" id="why" aria-labelledby="why-title">
+      <div class="container">
+        <div class="why-grid">
+          <h2 class="h2 why-title" id="why-title" data-reveal>Why choose OurBank?</h2>
+          <div class="why-figure" data-reveal="scale" data-delay="120">
+            <span class="display num">24/7</span>
+            <span class="label">Monitoring and support</span>
+          </div>
+          <ol class="stairs">
+            <li class="stair" data-reveal>
+              <span class="stair-rule" data-reveal="line"></span>
+              <h3 class="h3">Secure transactions</h3>
+              <p>Your safety is our top priority. Every transaction is encrypted and monitored 24/7.</p>
+            </li>
+            <li class="stair" data-reveal data-delay="120">
+              <span class="stair-rule" data-reveal="line" data-delay="120"></span>
+              <h3 class="h3">Reward points</h3>
+              <p>Reward points can be redeemed against your online and select offline purchases.</p>
+            </li>
+            <li class="stair" data-reveal data-delay="240">
+              <span class="stair-rule" data-reveal="line" data-delay="240"></span>
+              <h3 class="h3">24/7 support</h3>
+              <p>Need help? Our dedicated team is always here to assist you, day or night.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
-                // Scripts in shadow DOM need special handling (can be injected separately)
-            });
+    <!-- ============ SERVICES (dark block) ============ -->
+    <section class="services dark section" id="services" aria-labelledby="services-title">
+      <div class="container-wide">
+        <div class="services-head">
+          <h2 class="h2" id="services-title" data-reveal>Services</h2>
+          <p class="lead" data-reveal data-delay="100">Four ways to save, borrow and grow. Hover or tap a service to learn more.</p>
+        </div>
 
-    </script>
+        <div class="service-strips" data-reveal data-delay="150">
 
-    <script>
-        document.addEventListener("scroll", () => {
-            const headline = document.querySelector(".headline");
-            const inner = document.querySelector(".inner");
-            const nav = document.querySelector("nav");
-            const navHeight = 75;
-            const scrollTop = window.scrollY;
+          <article class="service" data-service="savings">
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="svc-savings">
+              <span class="h3 service-name">Savings Account</span>
+              <span class="service-tag">Zero Charge Transactions</span>
+            </button>
+            <div class="service-viz" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <g class="viz-grid"><line x1="10" y1="130" x2="230" y2="130"/></g>
+                <path class="ghost" d="M12 128 H56 V104 H100 V84 H144 V56 H188 V34 H228"/>
+                <path class="steps" d="M12 128 H56 V104 H100 V84 H144 V56 H188 V34 H228" pathLength="1"/>
+                <g class="step-dots">
+                  <circle cx="56" cy="104" r="3"/><circle cx="100" cy="84" r="3"/><circle cx="144" cy="56" r="3"/><circle cx="188" cy="34" r="3"/>
+                </g>
+                <circle class="end-dot" cx="228" cy="34" r="5"/>
+                <g class="deposit-drop"><line x1="56" y1="70" x2="56" y2="96"/><path d="M50 90 L56 97 L62 90"/></g>
+                <text class="viz-text value" x="228" y="20" text-anchor="end">+interest</text>
+              </svg>
+            </div>
+            <div class="service-panel" id="svc-savings">
+              <div class="service-panel-inner">
+                <p>A savings account is a secure deposit account that lets you store your money safely while earning interest on the balance.</p>
+                <a class="link" href="./registration.html">Open an account <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </article>
 
-            const headlineHeight = headline.offsetHeight - navHeight;
+          <article class="service" data-service="loan">
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="svc-loan">
+              <span class="h3 service-name">Personal Loan</span>
+              <span class="service-tag">Foreclose anytime with zero charge</span>
+            </button>
+            <div class="service-viz" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <circle class="src" cx="34" cy="75" r="16"/>
+                <text class="viz-text" x="34" y="79" text-anchor="middle">₹</text>
+                <path class="ghost" d="M52 75 C 100 75, 130 75, 188 75"/>
+                <path class="wire" d="M52 75 C 100 75, 130 75, 188 75" pathLength="1"/>
+                <circle class="dst" cx="206" cy="75" r="18"/>
+                <path class="dst-person" d="M206 68 a5 5 0 1 0 0.01 0 M196 86 a10 8 0 0 1 20 0"/>
+                <g class="chip">
+                  <rect x="-26" y="-10" width="52" height="20" rx="10"/>
+                  <text class="chip-text" x="0" y="4" text-anchor="middle">₹50,000</text>
+                </g>
+                <text class="viz-text muted" x="206" y="115" text-anchor="middle">you</text>
+              </svg>
+            </div>
+            <div class="service-panel" id="svc-loan">
+              <div class="service-panel-inner">
+                <p>A personal loan is an unsecured borrowing option that makes it easy to access funds when you need them.</p>
+                <a class="link" href="./registration.html">Open an account <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </article>
 
-            // Fade headline
-            let opacity = 1 - scrollTop / headlineHeight;
-            if (opacity < 0) opacity = 0;
-            headline.style.opacity = opacity;
+          <article class="service" data-service="fd">
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="svc-fd">
+              <span class="h3 service-name">Fixed Deposit</span>
+              <span class="service-tag">Earn up to 7.00% p.a.</span>
+            </button>
+            <div class="service-viz" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <rect class="vault" x="66" y="21" width="108" height="108" rx="14"/>
+                <g class="ticks">
+                  <line x1="120" y1="33" x2="120" y2="39"/><line x1="162" y1="75" x2="156" y2="75"/><line x1="120" y1="117" x2="120" y2="111"/><line x1="78" y1="75" x2="84" y2="75"/>
+                </g>
+                <circle class="dial-track" cx="120" cy="75" r="34"/>
+                <circle class="dial" cx="120" cy="75" r="34" pathLength="1" transform="rotate(-90 120 75)"/>
+                <path class="shackle" d="M110 55 v-6 a10 10 0 0 1 20 0 v6"/>
+                <text class="viz-text rate value" x="120" y="82" text-anchor="middle">7.00%</text>
+                <text class="viz-text muted" x="120" y="145" text-anchor="middle">locked for the term</text>
+              </svg>
+            </div>
+            <div class="service-panel" id="svc-fd">
+              <div class="service-panel-inner">
+                <p>A Fixed Deposit account is a form of investment instrument that allows customers to grow their savings at a fixed rate for a fixed period of time.</p>
+                <a class="link" href="./registration.html">Open an account <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </article>
 
-            // Move headline text slightly
-            inner.style.transform = `translate(-50%, calc(-50% + ${scrollTop * 0.4}px))`;
+          <article class="service" data-service="mf">
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="svc-mf">
+              <span class="h3 service-name">Mutual Funds</span>
+              <span class="service-tag">Maximise your wealth with market-linked returns</span>
+            </button>
+            <div class="service-viz" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <g class="spokes-ghost">
+                  <line x1="120" y1="75" x2="52" y2="38"/><line x1="120" y1="75" x2="66" y2="118"/><line x1="120" y1="75" x2="120" y2="20"/><line x1="120" y1="75" x2="178" y2="30"/><line x1="120" y1="75" x2="196" y2="82"/><line x1="120" y1="75" x2="160" y2="126"/>
+                </g>
+                <g class="spokes">
+                  <line x1="120" y1="75" x2="52" y2="38" pathLength="1"/>
+                  <line x1="120" y1="75" x2="66" y2="118" pathLength="1"/>
+                  <line x1="120" y1="75" x2="120" y2="20" pathLength="1"/>
+                  <line x1="120" y1="75" x2="178" y2="30" pathLength="1"/>
+                  <line x1="120" y1="75" x2="196" y2="82" pathLength="1"/>
+                  <line x1="120" y1="75" x2="160" y2="126" pathLength="1"/>
+                </g>
+                <g class="sat">
+                  <circle cx="52" cy="38" r="9"/><circle cx="66" cy="118" r="6"/><circle cx="120" cy="20" r="7"/><circle cx="178" cy="30" r="11"/><circle cx="196" cy="82" r="8"/><circle cx="160" cy="126" r="5"/>
+                </g>
+                <circle class="hub" cx="120" cy="75" r="13"/>
+                <text class="viz-text credit" x="222" y="24" text-anchor="end">+12.8%</text>
+              </svg>
+            </div>
+            <div class="service-panel" id="svc-mf">
+              <div class="service-panel-inner">
+                <p>A Mutual Fund is a professionally managed investment tool that pools money from multiple investors to purchase a diversified portfolio of stocks, bonds, or other securities.</p>
+                <a class="link" href="./registration.html">Open an account <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </article>
 
-            // Add or remove .scrolled class to nav
-            if (scrollTop > headlineHeight) {
-                nav.classList.add("scrolled");
-            } else {
-                nav.classList.remove("scrolled");
-            }
-        });
+        </div>
+      </div>
+    </section>
+  </main>
 
-    </script>
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.querySelector('nav ul');
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-cta">
+      <svg class="footer-cta-line draw" viewBox="0 0 1440 360" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-10 330 C 300 330, 520 300, 760 210 S 1180 40, 1450 20" pathLength="1"/>
+        <path class="dash" d="M-10 350 C 320 350, 560 330, 800 250 S 1200 90, 1450 60" pathLength="1"/>
+      </svg>
+      <div class="container">
+        <h2 class="h1 footer-cta-text lines">
+          <span class="line"><span>Ready to manage</span></span>
+          <span class="line"><span>your finances</span></span>
+          <span class="line"><span>effectively?</span></span>
+          <span class="footer-cta-sub" data-reveal data-delay="300">Let's get started.</span>
+        </h2>
+        <a class="btn btn-light btn-lg" href="./registration.html" data-reveal data-delay="200">Open an account
+          <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active'); // animate to "X"
-        });
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="./index.html" aria-label="OurBank home">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <circle class="ring" cx="16" cy="16" r="13"/>
+              <polyline class="rise" points="8.5,20.5 13.5,14.5 17.5,17.5 23.5,9.5"/>
+              <circle class="dot" cx="23.5" cy="9.5" r="2.2"/>
+            </svg>
+            <span>OurBank</span>
+          </a>
+          <p>Your money, your future, our priority.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Account</h3>
+          <ul>
+            <li><a href="#services">Savings</a></li>
+            <li><a href="#services">Mutual Funds</a></li>
+            <li><a href="#">Joint</a></li>
+            <li><a href="#">Business</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Loans</h3>
+          <ul>
+            <li><a href="#">Professional Loan</a></li>
+            <li><a href="#">Home Loan</a></li>
+            <li><a href="#">Business Loan</a></li>
+            <li><a href="#">Education Loan</a></li>
+            <li><a href="#">Gold Loan</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Follow us</h3>
+          <ul class="footer-social">
+            <li><a href="#" aria-label="OurBank on Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+            <li><a href="#" aria-label="OurBank on X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+            <li><a href="#" aria-label="OurBank on LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a></li>
+            <li><a href="#" aria-label="OurBank on Medium"><i class="fa-brands fa-medium" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </div>
 
-    </script>
-    <script>
-  AOS.init();
-</script>
+      <div class="footer-bottom">
+        <span>&copy; 2026 OurBank. All rights reserved.</span>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-wordmark" data-reveal data-reveal-edge aria-hidden="true"><span>OurBank</span></div>
+  </footer>
+
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/home.js"></script>
 </body>
-
 </html>
