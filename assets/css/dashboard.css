@@ -8,19 +8,28 @@
 
 /* ---------- Nav: account label + logout stay visible on every width ---------- */
 .dashboard .nav-links { display: flex; align-items: center; gap: 1rem; }
+/* Resolved on the page root so it keeps the page-level green (forest on light) even inside
+   the dark actions panel, where --text-green is remapped to the mint set */
+.dashboard { --seg-green: var(--text-green); }
 .acct-label {
   font-size: var(--fs-label);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--fg-muted);
+  color: var(--text-green-strong); /* 6.2:1 on the tint; --text-green sits at 4.4:1 at 12px */
   padding: 0.45rem 0.75rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--green-ring);
+  background: var(--green-tint);
   border-radius: var(--r-pill);
   white-space: nowrap;
 }
 @media (max-width: 767.98px) {
   .dashboard .nav-links { gap: 0.6rem; }
+  .dashboard .nav-right { gap: 0.6rem; }
+  .dashboard .site-nav .container-wide { gap: 1rem; }
   .acct-label { padding: 0.4rem 0.6rem; }
+}
+@media (max-width: 419.98px) {
+  .acct-label { display: none; }
 }
 
 /* ---------- Session gate (no session) ---------- */
@@ -30,7 +39,11 @@
 .gate-inner .btn { margin-top: 0.5rem; }
 
 /* ---------- 1. Statement ---------- */
-.statement { padding: calc(76px + clamp(2.5rem, 5vw, 5rem)) 0 clamp(3rem, 6vw, 5.5rem); }
+.statement {
+  position: relative;
+  padding: calc(76px + clamp(2.5rem, 5vw, 5rem)) 0 clamp(3rem, 6vw, 5.5rem);
+  background: var(--page-glow, radial-gradient(60% 55% at 85% 0%, color-mix(in srgb, var(--violet-200) 55%, transparent), transparent 70%), radial-gradient(40% 40% at 0% 100%, color-mix(in srgb, var(--mint-200) 45%, transparent), transparent 70%));
+}
 .statement-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -41,27 +54,56 @@
   .statement-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
 }
 .statement-copy { display: grid; gap: 1rem; container-type: inline-size; min-width: 0; }
-.balance-figure { position: relative; display: inline-block; max-width: 100%; }
+.balance-figure {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.5rem 0.9rem 0.6rem;
+  margin: -0.5rem -0.9rem -0.6rem;
+  isolation: isolate;
+}
+.balance-figure::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--r-surface);
+  background: var(--surface-tint);
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 40%, transparent 100%);
+  pointer-events: none;
+}
 .balance {
   --balance-fs: clamp(3.25rem, 1.75rem + 5.4vw, 6.75rem);
   font-size: min(var(--balance-fs), calc(100cqw / var(--chars, 10) * 1.62));
   font-weight: 640;
   line-height: 0.95;
   letter-spacing: var(--tracking-display);
-  color: var(--ink-900);
+  color: var(--fg-strong);
   white-space: nowrap;
+}
+/* Gradient digits (base .text-gradient-green); the sign stays solid green via .num .pre.
+   Block display avoids the inline-block baseline gap inside .balance-figure, and the
+   gradient's light end is kept at --text-green-soft so it stays above 3:1 on paper. */
+.balance.text-gradient-green {
+  display: block;
+  color: var(--text-green);
+  background-image: linear-gradient(120deg, var(--text-green-strong) 0%, var(--text-green) 55%, var(--text-green-soft) 100%);
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 .balance .pre { display: inline-block; margin-right: 0.04em; }
 .balance-flash {
   position: absolute; left: 0; right: 0; bottom: -0.35rem;
   height: 3px; border-radius: 2px;
-  background: var(--teal-500);
+  background: var(--credit);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--credit) 55%, transparent);
   transform: scaleX(0); transform-origin: left;
   opacity: 0;
 }
 .balance-figure.flash-credit .balance-flash,
 .balance-figure.flash-debit .balance-flash { animation: balance-flash 1.6s var(--ease-out) forwards; }
-.balance-figure.flash-debit .balance-flash { background: var(--coral-500); transform-origin: right; }
+.balance-figure.flash-debit .balance-flash { background: var(--debit); box-shadow: 0 0 10px color-mix(in srgb, var(--debit) 55%, transparent); transform-origin: right; }
 @keyframes balance-flash {
   0% { transform: scaleX(0); opacity: 1; }
   45% { transform: scaleX(1); opacity: 1; }
@@ -114,14 +156,15 @@
   letter-spacing: 0.06em;
   fill: var(--fg-muted);
 }
-.chart-labels text.is-high { fill: var(--teal-700); }
+.chart-labels text.is-high { fill: var(--credit); }
 .chart-labels { opacity: 0; transition: opacity 0.8s var(--ease-out) 1.3s; }
 .chart.in .chart-labels { opacity: 1; }
 .chart-end { transition: transform 0.9s var(--ease-out); }
 .chart-dot {
-  fill: var(--gold-500);
+  fill: var(--green-neon, var(--mint-500));
   stroke: var(--paper);
   stroke-width: 2.5;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--green-neon, transparent) 80%, transparent));
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
@@ -140,10 +183,20 @@
 
 /* ---------- 2. Actions (dark panel) ---------- */
 .actions {
-  --tone-credit: var(--teal-400);
-  --tone-debit: #f2917a;
+  /* Green type on the ink panel always uses the luminous mint set (the light-theme
+     forest tokens fall under 4.5:1 on ink), whichever page theme is active */
+  --text-green: #34d399;
+  --text-green-strong: #6ee7b7;
+  --text-green-soft: #10b981;
+  --grad-text-green: var(--grad-text-green-dk);
+  --green-tint: color-mix(in srgb, #34d399 16%, transparent);
+  --green-ring: color-mix(in srgb, #34d399 32%, transparent);
+  --tone-credit: var(--text-green);
+  --tone-debit: var(--coral-200);
   padding: clamp(3.5rem, 6vw, 6rem) 0;
+  box-shadow: inset 0 1px 0 var(--dk-line), inset 0 -1px 0 var(--dk-line);
 }
+:root[data-theme="dark"] .actions { --tone-debit: var(--debit); }
 .actions-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -181,7 +234,8 @@
   top: 4px; bottom: 4px; left: 4px;
   width: calc(50% - 4px);
   border-radius: var(--r-pill);
-  background: var(--dk-fg);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 2px 8px -2px color-mix(in srgb, var(--accent) 30%, transparent);
   transform: translateX(var(--seg-x));
   transition: transform 0.55s var(--ease-inout);
   z-index: 0;
@@ -206,10 +260,12 @@
   opacity: 0.6;
   transition: transform var(--dur) var(--ease-out), opacity var(--dur);
 }
-.seg-tab[data-target="withdraw"]::before { background: var(--coral-500); }
-.seg-tab[aria-selected="true"] { color: var(--ink-900); }
-.seg-tab[aria-selected="true"]::before { transform: scale(1); opacity: 1; }
-.seg-tab:focus-visible { outline-color: var(--teal-400); outline-offset: -2px; border-radius: var(--r-pill); }
+.seg-tab[data-target="withdraw"]::before { background: var(--tone-debit); }
+/* Selected tab sits on the --surface-2 indicator (white in light, #1c1940 in dark), so it uses the
+   page-level green (--seg-green: forest 5.5:1 on white, mint 8.6:1 on dark) and a green dot */
+.seg-tab[aria-selected="true"] { color: var(--seg-green); }
+.seg-tab[aria-selected="true"]::before { transform: scale(1); opacity: 1; background: var(--seg-green); }
+.seg-tab:focus-visible { outline-color: var(--accent); outline-offset: -2px; border-radius: var(--r-pill); }
 
 /* Stage: both panels share one grid cell so the height never jumps.
    The stage clips its own overflow (8px breathing room for focus rings) so the
@@ -252,7 +308,7 @@
 .actions .input::placeholder { color: var(--dk-fg-soft); }
 .actions .input.num { font-size: 1.15rem; font-weight: 600; }
 .actions .input-wrap .input-affix ~ .input { padding-left: 2.1rem; }
-.actions .input[aria-invalid="true"] { border-color: var(--coral-500); box-shadow: 0 0 0 4px rgb(231 111 81 / 0.22); }
+.actions .input[aria-invalid="true"] { border-color: var(--coral-500); box-shadow: 0 0 0 4px color-mix(in srgb, var(--coral-500) 22%, transparent); }
 /* Hide the native spin buttons; the field is typed, not stepped */
 .actions input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
 .actions input[type="number"]::-webkit-outer-spin-button,
@@ -282,6 +338,7 @@
 .preview-change { display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; font-size: 1.05rem; font-weight: 600; line-height: 1.2; }
 .preview-change .from { color: var(--dk-fg-muted); }
 .preview-change .to { color: var(--tone); }
+.preview[data-tone="credit"] .preview-change .to { color: var(--text-green); }
 .preview.is-idle .preview-amount { color: var(--dk-fg-soft); opacity: 0.8; }
 .preview.is-idle .preview-change .to { color: var(--dk-fg-muted); }
 .preview[data-state="exceeds"] .preview-change .to { color: var(--tone-debit); }
@@ -294,7 +351,9 @@
 .txn-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; flex-wrap: wrap; }
 .txn-balance { font-size: var(--fs-small); color: var(--dk-fg-muted); letter-spacing: 0.02em; }
 .txn-balance span { color: var(--dk-fg); }
+.txn-balance .currency { color: var(--text-green); -webkit-text-fill-color: var(--text-green); }
 @media (max-width: 479.98px) { .txn-foot .btn { width: 100%; } }
+.actions .btn-debit { --btn-glow: 0 0 0 1px color-mix(in srgb, var(--coral-500) 25%, transparent), 0 16px 36px -14px color-mix(in srgb, var(--coral-500) 60%, transparent); }
 
 /* Flying amount pill (transaction feedback) */
 .fly {
@@ -303,18 +362,18 @@
   z-index: var(--z-toast);
   padding: 0.5rem 0.85rem;
   border-radius: var(--r-pill);
-  background: var(--teal-600);
+  background: var(--grad-emerald, linear-gradient(135deg, var(--green-500), var(--green-600)));
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
   line-height: 1;
   white-space: nowrap;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--glow-green, 0 12px 30px -8px color-mix(in srgb, var(--green-500) 60%, transparent));
   pointer-events: none;
   will-change: transform, opacity;
   opacity: 0;
 }
-.fly[data-tone="debit"] { background: var(--coral-600); }
+.fly[data-tone="debit"] { background: linear-gradient(135deg, var(--coral-500), var(--coral-600)); box-shadow: 0 12px 30px -8px color-mix(in srgb, var(--coral-500) 65%, transparent); }
 
 /* ---------- 3. History ledger ---------- */
 .history { padding: clamp(3.5rem, 6vw, 6rem) 0 clamp(3rem, 5vw, 5rem); }
@@ -350,15 +409,18 @@
 tr.debit .type-dot { background: var(--debit); }
 .ledger td.c-amt, .ledger td.c-bal { text-align: right; font-weight: 600; font-size: 1.05rem; }
 .ledger td.c-amt { color: var(--credit); }
+tr.credit td.c-amt { color: var(--text-green); font-weight: 700; }
 tr.debit td.c-amt { color: var(--debit); }
-.ledger td.c-bal { color: var(--ink-900); font-weight: 500; }
+.ledger td.c-bal { color: var(--fg); font-weight: 500; }
+.ledger tbody tr { transition: background-color var(--dur); }
+.ledger tbody tr:hover { background: var(--surface); }
 
 /* New row: slides in with a fading tint (opacity + transform only) */
 tr.is-new td { position: relative; isolation: isolate; animation: row-in 0.7s var(--ease-out) both; }
 tr.is-new td::after {
   content: "";
   position: absolute; inset: 0;
-  background: var(--teal-100);
+  background: var(--green-100);
   z-index: -1;
   animation: row-tint 2.4s var(--ease-out) forwards;
 }

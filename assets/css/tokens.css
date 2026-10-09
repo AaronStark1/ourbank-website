@@ -1,21 +1,21 @@
 /* ==========================================================================
    OurBank design tokens
-   Palette derived from the existing brand set:
-   #264653 (ink)  #2A9D8F (growth teal)  #E9C46A (gold)  #F4A261 / #E76F51 (warm)
+   Palette rebuilt from the original live-site brand:
+   #4B70E2 / #8186d5 (violet)  #141d2a / #2e4079 (indigo navy)  #C0DECE / #2A9D8F / #28a745 (greens)
    ========================================================================== */
 :root {
   color-scheme: light;
 
   /* Ink: deep financial teal-navy (primary + dark surfaces) */
-  --ink-950: #0d1a20;
-  --ink-900: #14262e;
-  --ink-800: #1b3540;
-  --ink-700: #264653;
-  --ink-600: #35596a;
-  --ink-500: #47687a;
-  --ink-400: #7a96a3;
-  --ink-300: #a9bec7;
-  --ink-200: #d2dee2;
+  --ink-950: #0e1327;
+  --ink-900: #151b33;
+  --ink-800: #1e2749;
+  --ink-700: #2e4079;
+  --ink-600: #3a4f9a;
+  --ink-500: #4a5a8c;
+  --ink-400: #7b87b4;
+  --ink-300: #a8b1d2;
+  --ink-200: #d2d8ec;
 
   /* Growth teal (credit, growth, secondary) */
   --teal-700: #1f7a6f;
@@ -26,49 +26,92 @@
   --teal-200: #bfe4de;
   --teal-100: #e3f3f0;
 
-  /* Gold (value, interest, wealth) */
-  --gold-800: #6f5318;
-  --gold-700: #a8832f;
-  --gold-600: #c9a244;
-  --gold-500: #e9c46a;
-  --gold-400: #f0d48c;
-  --gold-100: #fbf3dc;
+  /* Mint (value, interest, highlights on dark; from live #C0DECE) */
+  --mint-800: #175c43;
+  --mint-700: #1f7a58;
+  --mint-600: #2f9e74;
+  --mint-500: #5ec29a;
+  --mint-200: #c0dece;
+  --mint-400: #8ad0b4;
+  --mint-100: #e6f4ed;
+
+  /* Brand violet (live site anchor #4B70E2, lavender #8186d5) */
+  --violet-700: #2a47ad;
+  --violet-600: #3558c7;
+  --violet-500: #4b70e2;
+  --violet-400: #8186d5;
+  --violet-300: #aab4ea;
+  --violet-200: #cfd6f5;
+  --violet-100: #e9ecfb;
+
+  /* Leaf green (live site credit #28a745, tuned for contrast) */
+  --green-700: #0f6a40;
+  --green-600: #137347;
+  --green-500: #22a060;
+  --green-100: #e3f5ea;
 
   /* Warm supporting (debit, alerts) */
+  --coral-800: #8a3a26;
+  --coral-700: #b64a30;
   --coral-600: #cf5a3d;
   --coral-500: #e76f51;
+  --coral-200: #f5b9a7;
   --coral-100: #fbe6df;
   --orange-500: #f4a261;
 
   /* Paper: warm off-white surfaces */
-  --paper: #f6f3ec;
-  --paper-2: #ede8dd;
-  --paper-3: #e4decf;
-  --surface: #fcfaf5;
-  --line: rgb(38 70 83 / 0.14);
-  --line-strong: rgb(38 70 83 / 0.3);
+  --paper: #f3f4fc;
+  --paper-2: #e9ecf7;
+  --paper-3: #dde2f2;
+  --surface: #fbfbfe;
+  --line: color-mix(in srgb, var(--ink-700) 14%, transparent);
+  --line-strong: color-mix(in srgb, var(--ink-700) 42%, transparent);
 
   /* Semantic */
   --bg: var(--paper);
   --fg: var(--ink-900);
   --fg-muted: var(--ink-500);
   --fg-soft: var(--ink-400);
-  --accent: var(--teal-500);
-  --accent-strong: var(--teal-700);
-  --credit: var(--teal-600);
-  --debit: var(--coral-600);
-  --value: var(--gold-500);
-  --focus: var(--teal-500);
+  --fg-strong: var(--ink-950);
+  --stroke: var(--ink-900);            /* diagram / ledger line ink on page surfaces */
+  --surface-2: #ffffff;                /* elevated surface */
+  --surface-tint: linear-gradient(180deg, color-mix(in srgb, var(--violet-100) 70%, transparent), transparent 70%);
+  --nav-bg: color-mix(in srgb, var(--paper) 84%, transparent);
+  --accent: var(--violet-500);
+  --accent-strong: var(--violet-600);
+  --credit: var(--text-green);
+  --debit: var(--coral-700);
+  --value: var(--mint-500);
+  --focus: var(--violet-500);
+
+  /* Vibrancy: brand gradients and glows (light theme) */
+  --grad-violet: linear-gradient(135deg, var(--violet-500) 0%, var(--violet-700) 100%);
+  --grad-emerald: linear-gradient(135deg, var(--green-600) 0%, var(--green-700) 100%);
+  --glow-violet: 0 0 0 1px color-mix(in srgb, var(--violet-500) 22%, transparent), 0 16px 36px -14px color-mix(in srgb, var(--violet-500) 55%, transparent);
+  --glow-green: 0 0 0 1px color-mix(in srgb, var(--green-600) 22%, transparent), 0 16px 36px -14px color-mix(in srgb, var(--green-600) 55%, transparent);
+  --page-glow: radial-gradient(60% 50% at 80% 0%, color-mix(in srgb, var(--violet-400) 26%, transparent), transparent 70%), radial-gradient(45% 40% at 0% 100%, color-mix(in srgb, var(--mint-500) 16%, transparent), transparent 70%);
+  --violet-neon: var(--violet-500);
+  --green-neon: var(--green-500);
+
+  /* Green typography (light): forest/emerald text, gradient display */
+  --text-green: #047857;
+  --text-green-strong: #065f46;
+  --text-green-soft: #0f8a62;
+  --grad-text-green: linear-gradient(120deg, #065f46 0%, #047857 50%, #0f8a62 100%);
+  --grad-text-green-dk: linear-gradient(120deg, #a7f3d0 0%, #34d399 50%, #10b981 100%);
+  --green-tint: color-mix(in srgb, #10b981 14%, transparent);
+  --green-ring: color-mix(in srgb, #10b981 28%, transparent);
 
   /* Dark block tokens (services, footer, auth panels) */
   --dk-bg: var(--ink-900);
   --dk-bg-2: var(--ink-800);
   --dk-bg-3: var(--ink-700);
-  --dk-fg: #f3efe6;
-  --dk-fg-muted: #a9bec7;
-  --dk-fg-soft: #7a96a3;
-  --dk-line: rgb(243 239 230 / 0.12);
-  --dk-line-strong: rgb(243 239 230 / 0.28);
+  --dk-glow: radial-gradient(110% 70% at 85% -10%, color-mix(in srgb, var(--violet-500) 26%, transparent), transparent 60%), radial-gradient(70% 60% at 0% 110%, color-mix(in srgb, var(--violet-400) 14%, transparent), transparent 60%);
+  --dk-fg: #f0f1f8;
+  --dk-fg-muted: #b4bbd8;
+  --dk-fg-soft: #8893bf;
+  --dk-line: color-mix(in srgb, var(--dk-fg) 12%, transparent);
+  --dk-line-strong: color-mix(in srgb, var(--dk-fg) 28%, transparent);
 
   /* Type */
   --font-display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
@@ -116,7 +159,87 @@
   --z-toast: 120;
 
   /* Shadows tinted to ink */
-  --shadow-sm: 0 1px 2px rgb(20 38 46 / 0.06), 0 4px 12px -6px rgb(20 38 46 / 0.12);
-  --shadow-md: 0 2px 4px rgb(20 38 46 / 0.06), 0 16px 40px -20px rgb(20 38 46 / 0.28);
-  --shadow-lg: 0 30px 80px -30px rgb(20 38 46 / 0.45);
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--ink-900) 6%, transparent), 0 4px 12px -6px color-mix(in srgb, var(--ink-900) 12%, transparent);
+  --shadow-md: 0 2px 4px color-mix(in srgb, var(--ink-900) 6%, transparent), 0 16px 40px -20px color-mix(in srgb, var(--ink-900) 28%, transparent);
+  --shadow-lg: 0 30px 80px -30px color-mix(in srgb, var(--ink-900) 45%, transparent);
+}
+
+/* ==========================================================================
+   Dark theme. The bootstrap script in each page sets data-theme before
+   first paint (stored choice, else prefers-color-scheme), so this single
+   block is the whole dark system. Ink tokens stay "always dark" and are
+   only used for backgrounds; page foregrounds use --fg / --stroke.
+   ========================================================================== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #0d0b18;
+  --paper-2: #121027;
+  --paper-3: #191636;
+  --surface: #151330;
+  --surface-2: #1c1940;
+  --surface-tint: linear-gradient(180deg, color-mix(in srgb, var(--violet-500) 14%, transparent), transparent 70%);
+
+  --bg: var(--paper);
+  --fg: #eef0fb;
+  --fg-strong: #ffffff;
+  --fg-muted: #b5bbdb;
+  --fg-soft: #8c93bd;
+  --stroke: #e6e9fb;
+  --line: color-mix(in srgb, #c7cdf3 14%, transparent);
+  --line-strong: color-mix(in srgb, #c7cdf3 34%, transparent);
+  --nav-bg: color-mix(in srgb, var(--paper) 78%, transparent);
+
+  --violet-neon: #8aa2ff;
+  --green-neon: #3ee29a;
+  --text-green: #34d399;
+  --text-green-strong: #6ee7b7;
+  --text-green-soft: #10b981;
+  --grad-text-green: var(--grad-text-green-dk);
+  --green-tint: color-mix(in srgb, #34d399 16%, transparent);
+  --green-ring: color-mix(in srgb, #34d399 32%, transparent);
+  --accent: var(--violet-neon);
+  --accent-strong: var(--violet-400);
+  --credit: var(--text-green);
+  --debit: #ff8a6a;
+  --value: var(--mint-400);
+  --focus: var(--violet-neon);
+  --mint-800: #bfeedd;              /* value text on tinted pills flips light */
+  --green-600: #35d08d;             /* credit text on dark */
+  --coral-700: #ff8a6a;             /* debit text on dark */
+  --coral-800: #ffb59f;
+  --coral-100: color-mix(in srgb, #ff8a6a 16%, transparent);
+  --coral-200: #ffb59f;
+  --mint-100: color-mix(in srgb, var(--mint-500) 16%, transparent);
+  --green-100: color-mix(in srgb, var(--green-neon) 16%, transparent);
+  --violet-100: color-mix(in srgb, var(--violet-neon) 16%, transparent);
+  --violet-200: color-mix(in srgb, var(--violet-neon) 30%, transparent);
+  --teal-100: color-mix(in srgb, var(--teal-400) 16%, transparent);
+  --teal-200: color-mix(in srgb, var(--teal-400) 30%, transparent);
+
+  /* Dark blocks lift slightly above the obsidian page with a stronger glow */
+  --dk-bg: #110f24;
+  --dk-bg-2: #181538;
+  --dk-bg-3: #211d4a;
+  --dk-fg: #f2f3fc;
+  --dk-fg-muted: #b8bddc;
+  --dk-fg-soft: #8f95c0;
+  --dk-line: color-mix(in srgb, #c7cdf3 14%, transparent);
+  --dk-line-strong: color-mix(in srgb, #c7cdf3 34%, transparent);
+  --dk-glow: radial-gradient(110% 70% at 85% -10%, color-mix(in srgb, var(--violet-500) 38%, transparent), transparent 60%), radial-gradient(70% 60% at 0% 110%, color-mix(in srgb, var(--green-neon) 12%, transparent), transparent 60%);
+
+  --grad-violet: linear-gradient(135deg, #5a76ea 0%, var(--violet-700) 100%);
+  --grad-emerald: linear-gradient(135deg, #38d690 0%, #1c9a63 100%);
+  --glow-violet: 0 0 0 1px color-mix(in srgb, var(--violet-neon) 35%, transparent), 0 18px 50px -14px color-mix(in srgb, var(--violet-neon) 60%, transparent);
+  --glow-green: 0 0 0 1px color-mix(in srgb, var(--green-neon) 35%, transparent), 0 18px 50px -14px color-mix(in srgb, var(--green-neon) 55%, transparent);
+  --page-glow: radial-gradient(60% 50% at 80% 0%, color-mix(in srgb, var(--violet-500) 30%, transparent), transparent 70%), radial-gradient(45% 40% at 0% 100%, color-mix(in srgb, var(--green-neon) 12%, transparent), transparent 70%);
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 16px -8px rgb(0 0 0 / 0.6);
+  --shadow-md: 0 2px 6px rgb(0 0 0 / 0.45), 0 20px 48px -20px rgb(0 0 0 / 0.7);
+  --shadow-lg: 0 30px 80px -30px rgb(0 0 0 / 0.8);
+}
+
+/* Smooth theme switch: ui.js adds .theme-switching for ~400ms */
+html.theme-switching, html.theme-switching *, html.theme-switching *::before, html.theme-switching *::after {
+  transition: background-color 380ms ease, color 200ms ease, border-color 380ms ease, fill 200ms ease, stroke 200ms ease, box-shadow 380ms ease !important;
 }

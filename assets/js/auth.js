@@ -261,6 +261,9 @@
       const count = fields.filter((k) => done[k]).length;
       if (statusText && panel.dataset.state !== 'success') {
         statusText.textContent = count === 3 ? 'Ready to open' : `${count} of 3 complete`;
+        // Progress reads green once anything is filled; the ready state is strong green
+        statusText.classList.toggle('is-progress', count > 0 && count < 3);
+        statusText.classList.toggle('is-ready', count === 3);
       }
     };
 

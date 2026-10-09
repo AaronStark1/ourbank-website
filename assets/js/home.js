@@ -24,8 +24,8 @@
       }
       OB.renderNumber(big, 50000, { prefix: '₹' });
       setTimeout(() => {
-        OB.countTo(big, 53500, { from: 50000, prefix: '₹', duration: 1800 }).then(() => delta?.classList.add('show'));
-      }, 2300);
+        OB.countTo(big, 53500, { from: 50000, prefix: '₹', duration: 1500 }).then(() => delta?.classList.add('show'));
+      }, 1600);
     };
 
     // Wait for fonts so the masked line reveal does not jump on font swap.
@@ -33,7 +33,7 @@
     let started = false;
     const go = () => { if (!started) { started = true; start(); } };
     ready.then(go);
-    setTimeout(go, 1200); // safety net if fonts are slow
+    setTimeout(go, 700); // safety net if fonts are slow
 
     OB.pointerParallax(hero.querySelector('.hero-viz') ? hero : null);
 

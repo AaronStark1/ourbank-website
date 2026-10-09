@@ -202,7 +202,43 @@
     getUser: (accno) => { const d = sessionStorage.getItem(accno); return d ? JSON.parse(d) : null; },
   };
 
+  /* ---------- Theme (data-theme on <html>; bootstrap script in <head> sets it pre-paint) ---------- */
+  const THEME_KEY = 'ob-theme';
+  const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  OB.getTheme = () => document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  OB.setTheme = function (theme, persist = true) {
+    const html = document.documentElement;
+    html.classList.add('theme-switching');
+    html.setAttribute('data-theme', theme);
+    if (persist) { try { localStorage.setItem(THEME_KEY, theme); } catch (_) { /* storage blocked */ } }
+    document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(theme === 'dark'));
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    });
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0d0b18' : '#f3f4fc');
+    clearTimeout(OB._themeTimer);
+    OB._themeTimer = setTimeout(() => html.classList.remove('theme-switching'), 420);
+  };
+  function initTheme() {
+    let stored = null;
+    try { stored = localStorage.getItem(THEME_KEY); } catch (_) { /* storage blocked */ }
+    const html = document.documentElement;
+    if (!html.hasAttribute('data-theme')) html.setAttribute('data-theme', stored || (darkQuery.matches ? 'dark' : 'light'));
+    html.classList.remove('theme-switching');
+    document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(OB.getTheme() === 'dark'));
+      btn.setAttribute('aria-label', OB.getTheme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.addEventListener('click', () => OB.setTheme(OB.getTheme() === 'dark' ? 'light' : 'dark'));
+    });
+    darkQuery.addEventListener('change', (e) => {
+      let s = null; try { s = localStorage.getItem(THEME_KEY); } catch (_) {}
+      if (!s) OB.setTheme(e.matches ? 'dark' : 'light', false);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     initNav();
     initReveal();
     initCounters();

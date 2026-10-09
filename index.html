@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('ob-theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OurBank | Banking built around you</title>
   <meta name="description" content="OurBank: save, borrow and invest from one secure account. Deposit and withdraw in seconds and watch your money grow.">
-  <meta name="theme-color" content="#f6f3ec">
+  <meta name="theme-color" content="#f3f4fc">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23264653' stroke-width='2.4'/%3E%3Cpolyline points='8.5,20.5 13.5,14.5 17.5,17.5 23.5,9.5' fill='none' stroke='%232a9d8f' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='23.5' cy='9.5' r='2.2' fill='%23e9c46a'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +32,19 @@
         </svg>
         <span>OurBank</span>
       </a>
-      <nav class="nav-links" aria-label="Primary">
-        <a class="nav-link" href="./registration.html">Register</a>
-        <a class="btn btn-sm" href="./login.html">Login</a>
-      </nav>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="./registration.html">Register</a>
+          <a class="btn btn-sm" href="./login.html">Login</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -64,10 +71,11 @@
     <section class="hero" id="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-copy">
+          <p class="eyebrow-badge hero-eyebrow">Savings at 7.00% p.a.</p>
           <h1 class="display lines" id="hero-title">
             <span class="line"><span>Banking</span></span>
             <span class="line"><span>built around</span></span>
-            <span class="line"><span class="hero-you">you.
+            <span class="line"><span class="hero-you"><span class="text-gradient-green">you.</span>
               <svg class="hero-underline" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 50 2, 120 2, 198 8" pathLength="1"/></svg>
             </span></span>
           </h1>
@@ -97,17 +105,17 @@
             <svg viewBox="0 0 600 620" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#2a9d8f" stop-opacity="0.22"/>
-                  <stop offset="1" stop-color="#2a9d8f" stop-opacity="0"/>
+                  <stop offset="0" style="stop-color: var(--teal-500)" stop-opacity="0.22"/>
+                  <stop offset="1" style="stop-color: var(--teal-500)" stop-opacity="0"/>
                 </linearGradient>
               </defs>
               <path class="area" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110 L540 600 L70 600 Z" fill="url(#areaFill)"/>
-              <path class="flow" id="flowPath" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110" pathLength="1"/>
+              <path class="flow-line" id="flowPath" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110" pathLength="1"/>
               <path class="flow-ghost" d="M70 540 C160 540 220 420 300 360 C380 300 500 250 540 110"/>
               <g class="particles">
-                <circle r="5"><animateMotion dur="4.8s" repeatCount="indefinite" begin="2.2s"><mpath href="#flowPath"/></animateMotion></circle>
-                <circle r="3.5"><animateMotion dur="4.8s" repeatCount="indefinite" begin="3.8s"><mpath href="#flowPath"/></animateMotion></circle>
-                <circle r="4.2"><animateMotion dur="4.8s" repeatCount="indefinite" begin="5.4s"><mpath href="#flowPath"/></animateMotion></circle>
+                <circle r="5" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.92;1" dur="4.8s" begin="1.7s" repeatCount="indefinite"/><animateMotion dur="4.8s" repeatCount="indefinite" begin="1.7s"><mpath href="#flowPath"/></animateMotion></circle>
+                <circle r="3.5" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.92;1" dur="4.8s" begin="3.3s" repeatCount="indefinite"/><animateMotion dur="4.8s" repeatCount="indefinite" begin="3.3s"><mpath href="#flowPath"/></animateMotion></circle>
+                <circle r="4.2" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.92;1" dur="4.8s" begin="4.9s" repeatCount="indefinite"/><animateMotion dur="4.8s" repeatCount="indefinite" begin="4.9s"><mpath href="#flowPath"/></animateMotion></circle>
               </g>
             </svg>
           </div>
@@ -116,16 +124,16 @@
             <span class="viz-node node-b"></span>
             <span class="viz-node node-c"></span>
             <div class="viz-label label-a">
-              <span class="label">Deposit</span>
-              <span class="viz-amount num">₹50,000</span>
+              <span class="label is-green">Deposit</span>
+              <span class="viz-amount num"><span class="currency">₹</span>50,000</span>
             </div>
             <div class="viz-label label-b">
-              <span class="label">Savings account</span>
+              <span class="label is-green">Savings account</span>
               <span class="viz-rate">7.00% p.a.</span>
             </div>
             <div class="viz-label label-c">
               <span class="viz-big num" id="hero-big" data-value="50000">₹50,000</span>
-              <span class="label">After one year</span>
+              <span class="label is-green">After one year</span>
             </div>
             <span class="viz-delta num" id="hero-delta">+₹3,500</span>
           </div>
@@ -137,23 +145,23 @@
     <section class="flow section" id="flow" aria-labelledby="flow-title">
       <div class="container">
         <div class="flow-head">
-          <h2 class="h2" id="flow-title" data-reveal>Smart banking made simple</h2>
+          <h2 class="h2" id="flow-title" data-reveal>Smart banking made <span class="text-gradient-green">simple</span></h2>
           <p class="lead" data-reveal data-delay="100">Manage your finances effortlessly with our secure and user-friendly platform. Track transactions, deposit and withdraw funds, and plan your future, all in one place.</p>
         </div>
 
         <figure class="transfer" data-reveal="scale" data-delay="150" data-loop aria-label="Illustration: money moves from your account into savings and then into an investment">
           <div class="transfer-track">
             <div class="t-node">
-              <span class="label">Your account</span>
-              <span class="t-value num">₹1,24,500</span>
+              <span class="label is-green">Your account</span>
+              <span class="t-value num"><span class="currency">₹</span>1,24,500</span>
             </div>
             <div class="t-link" aria-hidden="true">
               <span class="t-dash"></span>
               <span class="t-chip num">₹50,000</span>
             </div>
             <div class="t-node t-node-mid">
-              <span class="label">Savings</span>
-              <span class="t-value num">₹50,000</span>
+              <span class="label is-green">Savings</span>
+              <span class="t-value num"><span class="currency">₹</span>50,000</span>
               <span class="t-meta value">7.00% p.a.</span>
             </div>
             <div class="t-link" aria-hidden="true">
@@ -161,8 +169,8 @@
               <span class="t-chip num">₹2,450</span>
             </div>
             <div class="t-node">
-              <span class="label">Investment</span>
-              <span class="t-value num">₹2,450</span>
+              <span class="label is-green">Investment</span>
+              <span class="t-value num"><span class="currency">₹</span>2,450</span>
               <span class="t-meta credit">+12.8%</span>
             </div>
           </div>
@@ -182,9 +190,9 @@
     <section class="why section" id="why" aria-labelledby="why-title">
       <div class="container">
         <div class="why-grid">
-          <h2 class="h2 why-title" id="why-title" data-reveal>Why choose OurBank?</h2>
+          <h2 class="h2 why-title" id="why-title" data-reveal>Why choose <span class="text-gradient-green">OurBank</span>?</h2>
           <div class="why-figure" data-reveal="scale" data-delay="120">
-            <span class="display num">24/7</span>
+            <span class="display num text-gradient-green">24/7</span>
             <span class="label">Monitoring and support</span>
           </div>
           <ol class="stairs">
@@ -212,7 +220,7 @@
     <section class="services dark section" id="services" aria-labelledby="services-title">
       <div class="container-wide">
         <div class="services-head">
-          <h2 class="h2" id="services-title" data-reveal>Services</h2>
+          <h2 class="h2" id="services-title" data-reveal><span class="text-gradient-green">Services</span></h2>
           <p class="lead" data-reveal data-delay="100">Four ways to save, borrow and grow. Hover or tap a service to learn more.</p>
         </div>
 
@@ -347,7 +355,7 @@
         <h2 class="h1 footer-cta-text lines">
           <span class="line"><span>Ready to manage</span></span>
           <span class="line"><span>your finances</span></span>
-          <span class="line"><span>effectively?</span></span>
+          <span class="line"><span><span class="text-gradient-green">effectively</span>?</span></span>
           <span class="footer-cta-sub" data-reveal data-delay="300">Let's get started.</span>
         </h2>
         <a class="btn btn-light btn-lg" href="./registration.html" data-reveal data-delay="200">Open an account
@@ -389,7 +397,7 @@
         <div class="footer-col">
           <h3>Loans</h3>
           <ul>
-            <li><a href="#">Professional Loan</a></li>
+            <li><a href="#services">Personal Loan</a></li>
             <li><a href="#">Home Loan</a></li>
             <li><a href="#">Business Loan</a></li>
             <li><a href="#">Education Loan</a></li>
