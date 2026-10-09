@@ -1,91 +1,154 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
-
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="registration.css">
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/9720/9720576.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-    <title>Sign In</title>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('ob-theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in | OurBank</title>
+  <meta name="description" content="Sign in to your OurBank account to view your balance, deposit and withdraw in seconds.">
+  <meta name="theme-color" content="#f3f4fc">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23264653' stroke-width='2.4'/%3E%3Cpolyline points='8.5,20.5 13.5,14.5 17.5,17.5 23.5,9.5' fill='none' stroke='%232a9d8f' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='23.5' cy='9.5' r='2.2' fill='%23e9c46a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 
-<body>
-    <div class="main">
-        <div class="container b-container" id="b-container" style="left: 0; z-index: 100;">
-            <form class="form" id="b-form" onsubmit="login()">
-                <h2 class="form_title title">Sign in to Account</h2>
-                <div class="form__icons">
-                </div>
-                <span class="form__span">Access your bank account securely</span>
+<body class="auth-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="nav-sentinel" aria-hidden="true"></div>
 
-                <div class="input-group">
-                    <i class="fa-regular fa-address-card form__icon"></i>
-                    <input class="form__input" type="text" placeholder="Account Number" id="accno">
-                </div>
-
-                <div class="input-group">
-                    <i class="fa-solid fa-lock form__icon"></i>
-                    <input class="form__input" type="password" placeholder="Password" id="password">
-                </div>
-
-                <!-- <a class="form__link">Forgot your password?</a> -->
-                <button class="animated-button">
-                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                        </path>
-                    </svg>
-                    <span class="text">SIGN IN</span>
-                    <span class="circle"></span>
-                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
-                        </path>
-                    </svg>
-                </button>
-            </form>
-        </div>
-
-        <div class="switch" id="switch-cnt" style="left: 600px;">
-            <div class="switch__circle"></div>
-            <div class="switch__circle switch__circle--t"></div>
-            <div class="switch__container" id="switch-c2">
-                <h2 class="switch__title title">Hello Customer!</h2>
-                <p class="switch__description description">Enter your personal details and start journey with us</p>
-                <a href="registration.html" class="switch__button button switch-btn"
-                    style="text-decoration: none; display: flex; justify-content: center; align-items: center;">SIGN
-                    UP</a>
-            </div>
-        </div>
+  <header class="site-nav" data-nav>
+    <div class="container-wide">
+      <a class="brand" href="./index.html" aria-label="OurBank home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <circle class="ring" cx="16" cy="16" r="13"/>
+          <polyline class="rise" points="8.5,20.5 13.5,14.5 17.5,17.5 23.5,9.5"/>
+          <circle class="dot" cx="23.5" cy="9.5" r="2.2"/>
+        </svg>
+        <span>OurBank</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="./registration.html">Register</a>
+          <a class="btn btn-sm" href="./login.html" aria-current="page">Login</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
-    <script>
-        function login() {
-            event.preventDefault()
-            const accno = document.getElementById('accno').value.trim();
-            const password = document.getElementById('password').value.trim();
-            if (!accno || !password) {
-                alert("Please fill the form")
-            }
-            else {
-                let userData = JSON.parse(sessionStorage.getItem(accno))
-                if (!userData) {
-                    alert("Account Number does not exist. Please register.");
-                    return;
-                }
-                if (userData.password == password) {
-                    sessionStorage.setItem('loggedInAccNo',accno)
-                    alert("Login successful")
-                    window.location.href = "./dashboard.html"
-                }
-                else {
-                    alert("Wrong passowrd")
-                }
+  </header>
 
-            }
-        }
-    </script>
+  <div class="mobile-menu" id="mobile-menu">
+    <svg class="mobile-menu-art" viewBox="0 0 390 460" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M-10 420 C 90 420, 150 380, 210 300 S 320 120, 400 90" pathLength="1"/>
+      <path class="dash" d="M-10 445 C 100 445, 170 410, 235 330 S 335 160, 400 130" pathLength="1"/>
+      <circle cx="360" cy="105" r="5"/>
+    </svg>
+    <nav class="mobile-menu-links" aria-label="Mobile">
+      <a href="./registration.html">Register <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="./login.html" aria-current="page">Login <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="./index.html#services">Services <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <span>Your money, your future, our priority.</span>
+      <span class="mono">OurBank</span>
+    </div>
+  </div>
+
+  <main id="main" class="auth auth-login">
+
+    <!-- ============ FORM COLUMN ============ -->
+    <section class="auth-form-col" aria-labelledby="login-title">
+      <form class="auth-form" id="b-form" novalidate>
+        <div class="auth-head">
+          <span class="eyebrow-badge auth-eyebrow" data-reveal>Secure sign in</span>
+          <h1 class="h1 auth-title lines" id="login-title"><span class="line"><span>Welcome <span class="text-gradient-green">back.</span></span></span></h1>
+          <p class="auth-sub" data-reveal data-delay="100">Sign in with your account number to see your balance and move money in seconds.</p>
+        </div>
+
+        <div class="auth-fields" data-reveal data-delay="160">
+          <div class="field">
+            <label class="field-label" for="accno">Account number</label>
+            <input class="input mono" type="text" id="accno" name="accno" autocomplete="username" autocapitalize="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label class="field-label" for="password">Password</label>
+            <div class="input-wrap">
+              <input class="input" type="password" id="password" name="password" autocomplete="current-password">
+              <button class="input-action" type="button" aria-pressed="false" aria-controls="password" data-toggle-password>Show</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-status-region" id="login-status-region" role="status" aria-live="polite"></div>
+
+        <button class="btn btn-block auth-submit" type="submit" data-reveal data-delay="220">Sign in
+          <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <p class="auth-alt" data-reveal data-delay="280">New to OurBank? <a class="link is-green" href="./registration.html">Register</a></p>
+      </form>
+    </section>
+
+    <!-- ============ DARK PANEL: secure connection ============ -->
+    <aside class="auth-panel dark" id="login-panel" data-state="idle" data-reveal="scale" data-delay="120" aria-labelledby="login-panel-title">
+      <div class="auth-panel-head">
+        <span class="label">Secure connection</span>
+        <span class="auth-status label" id="login-status-label">Unverified</span>
+      </div>
+
+      <figure class="auth-viz" aria-label="Illustration: a secure connection from you to OurBank, verified when you sign in">
+        <svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g class="rules">
+            <line x1="20" y1="40" x2="580" y2="40"/>
+            <line x1="20" y1="90" x2="580" y2="90"/>
+            <line x1="20" y1="140" x2="580" y2="140"/>
+            <line x1="20" y1="190" x2="580" y2="190"/>
+          </g>
+          <path class="track" d="M48 172 C 220 172, 320 48, 552 48"/>
+          <path class="line" d="M48 172 C 220 172, 320 48, 552 48" pathLength="1"/>
+          <circle class="node" cx="48" cy="172" r="7"/>
+          <circle class="node-core" cx="48" cy="172" r="3.5"/>
+          <circle class="node" cx="552" cy="48" r="7"/>
+          <circle class="node-core" cx="552" cy="48" r="3.5"/>
+          <g class="lock" transform="translate(278 108)">
+            <circle class="lock-bg" r="27"/>
+            <path class="lock-body" d="M-12 -2 h24 a3 3 0 0 1 3 3 v14 a3 3 0 0 1 -3 3 h-24 a3 3 0 0 1 -3 -3 v-14 a3 3 0 0 1 3 -3 z" pathLength="1"/>
+            <path class="lock-shackle" d="M-8 -2 v-6 a8 8 0 0 1 16 0 v6" pathLength="1"/>
+            <circle class="lock-key" cx="0" cy="8" r="2.4"/>
+          </g>
+        </svg>
+        <div class="auth-viz-label lbl-start" aria-hidden="true"><span>You</span></div>
+        <div class="auth-viz-label lbl-end" aria-hidden="true"><span>OurBank</span><span class="sub is-green">Encrypted, monitored 24/7</span></div>
+      </figure>
+
+      <div class="auth-panel-copy">
+        <h2 class="h2 auth-panel-title" id="login-panel-title">Hello, customer.</h2>
+        <p>Enter your details and start your journey with us.</p>
+        <a class="btn btn-outline-light" href="./registration.html">Register
+          <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer-compact">
+    <span>&copy; 2026 OurBank. All rights reserved.</span>
+    <ul>
+      <li><a href="#">Terms &amp; Conditions</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+  </footer>
+
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/auth.js"></script>
 </body>
-
 </html>

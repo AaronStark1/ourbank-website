@@ -1,0 +1,325 @@
+/* ==========================================================================
+   OurBank auth pages: login and registration.
+   Asymmetric split: paper form column + inset dark ledger panel. The two
+   pages mirror each other (login: form left, register: form right).
+   Panel state is driven by [data-state] on .auth-panel; only transform,
+   opacity and stroke-dashoffset animate.
+   ========================================================================== */
+
+.auth-page {
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+/* ---------- Split layout ---------- */
+.auth {
+  --nav-h: 76px;
+  --panel-inset: clamp(0.75rem, 1.5vw, 1.25rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: var(--nav-h);
+  min-height: 0;
+}
+@media (max-width: 767.98px) { .auth { --nav-h: 68px; } }
+@media (min-width: 900px) {
+  .auth { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
+  .auth-register { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+  .auth-register .auth-panel { order: -1; }
+}
+
+/* ---------- Form column ---------- */
+.auth-form-col {
+  display: grid;
+  align-content: center;
+  padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) clamp(3rem, 6vw, 4rem);
+  min-width: 0;
+}
+@media (min-width: 900px) {
+  .auth-form-col { padding-block: clamp(2rem, 3vw, 2.75rem); }
+  .auth-login .auth-form-col { padding-right: clamp(2rem, 5vw, 5rem); }
+  .auth-register .auth-form-col { padding-left: clamp(2rem, 5vw, 5rem); }
+  .auth-register .auth-form { margin-left: auto; }
+}
+.auth-form {
+  width: min(100%, 26rem);
+  display: grid;
+  gap: 1.1rem;
+}
+.auth-head { display: grid; gap: 0.85rem; }
+/* Eyebrow is the shared green badge (base.css); keep it from stretching in the grid */
+.auth-eyebrow { justify-self: start; color: var(--text-green-strong); } /* 6.2:1 on the tint at 12px */
+.auth-title {
+  font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3.5rem);
+  line-height: 0.95;
+}
+/* Headline keyword: the gradient's light end stays above 3:1 on paper for display sizes */
+.auth-title .text-gradient-green {
+  background-image: linear-gradient(120deg, var(--text-green-strong) 0%, var(--text-green) 55%, var(--text-green-soft) 100%);
+  padding-right: 0.04em; /* keeps the trailing period inside the clipped box */
+}
+.auth-sub {
+  color: var(--fg-muted);
+  max-width: 36ch;
+  text-wrap: pretty;
+}
+.auth-fields { display: grid; gap: 1rem; margin-top: 0.35rem; }
+.auth-form .input-action { min-width: 3.4rem; }
+.auth-form .input-wrap .input { padding-right: 4.75rem; }
+.auth-status-region { display: grid; }
+.auth-status-region .form-status { animation: auth-status-in 400ms var(--ease-out); }
+@keyframes auth-status-in { from { opacity: 0; transform: translateY(6px); } }
+
+.auth-submit { margin-top: 0.25rem; }
+.auth-submit .btn-arrow { width: 1.1em; height: 1.1em; }
+
+.auth-alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+.auth-alt .link { color: var(--fg); font-size: var(--fs-small); }
+.auth-alt .link.is-green { color: var(--text-green); }
+
+/* ---------- Dark panel ---------- */
+.auth-panel {
+  /* Green type on the ink panel always uses the luminous mint set (the light-theme
+     forest tokens fall under 4.5:1 on ink), whichever page theme is active */
+  --text-green: #34d399;
+  --text-green-strong: #6ee7b7;
+  --text-green-soft: #10b981;
+  --grad-text-green: var(--grad-text-green-dk);
+  --green-tint: color-mix(in srgb, #34d399 16%, transparent);
+  --green-ring: color-mix(in srgb, #34d399 32%, transparent);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  margin: 0 var(--gutter) var(--gutter);
+  padding: clamp(1.5rem, 2.5vw, 2.75rem);
+  border-radius: var(--r-surface);
+  overflow: hidden;
+  min-width: 0;
+  isolation: isolate;
+  border: 1px solid var(--dk-line);
+  box-shadow: var(--shadow-md);
+}
+.auth-panel::before {
+  /* Faint ledger rule texture: hairlines, no gradients or glows */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(180deg, transparent 0 55px, var(--dk-line) 55px 56px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+@media (min-width: 900px) {
+  .auth-panel {
+    grid-template-rows: auto 1fr auto;
+    margin: var(--panel-inset) var(--gutter) var(--panel-inset);
+    /* Fill the viewport row, but on tall screens cap and centre with the form */
+    align-self: center;
+    min-height: min(calc(100% - 2 * var(--panel-inset)), 54rem);
+  }
+  .auth-login .auth-panel { margin-left: 0; }
+  .auth-register .auth-panel { margin-right: 0; }
+}
+
+.auth-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.auth-panel-head .label { color: var(--dk-fg-soft); }
+
+.auth-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--dk-fg-muted);
+  transition: color var(--dur);
+}
+.auth-status::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dk-fg-soft);
+  transition: background-color var(--dur);
+}
+.auth-panel[data-state="verifying"] .auth-status { color: var(--mint-400); }
+.auth-panel[data-state="verifying"] .auth-status::before { background: var(--mint-500); animation: auth-pulse 900ms var(--ease-inout) infinite; }
+.auth-panel[data-state="secure"] .auth-status,
+.auth-panel[data-state="success"] .auth-status { color: var(--green-neon, var(--teal-300)); }
+.auth-panel[data-state="secure"] .auth-status::before,
+.auth-panel[data-state="success"] .auth-status::before { background: var(--green-neon, var(--teal-400)); box-shadow: 0 0 8px color-mix(in srgb, var(--green-neon, transparent) 70%, transparent); }
+.auth-panel[data-state="error"] .auth-status { color: var(--coral-200); }
+.auth-panel[data-state="error"] .auth-status::before { background: var(--debit); }
+@keyframes auth-pulse { 50% { opacity: 0.3; } }
+/* Registration progress: "1 of 3" turns green once something is filled, "Ready to open" is strong green.
+   State rules above ([data-state]) are more specific, so success and error still win. */
+.auth-status.is-progress { color: var(--text-green); }
+.auth-status.is-progress::before { background: var(--text-green); }
+.auth-status.is-ready { color: var(--text-green-strong); }
+.auth-status.is-ready::before { background: var(--text-green-strong); box-shadow: 0 0 8px var(--green-ring); }
+
+.auth-panel-copy {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  max-width: 34ch;
+}
+.auth-panel-title {
+  font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
+  line-height: 1;
+}
+.auth-panel-copy p { color: var(--dk-fg-muted); text-wrap: pretty; }
+.auth-panel-copy .btn { margin-top: 0.5rem; }
+.auth-panel-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  color: var(--dk-fg-soft);
+  font-size: var(--fs-small);
+}
+.auth-panel-note .rate { color: var(--text-green); font-family: var(--font-display); font-weight: 600; }
+
+/* ---------- Ledger visual ---------- */
+.auth-viz {
+  --mx: 0; --my: 0;
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 600 / 220;
+  align-self: center;
+  container-type: inline-size;
+}
+.auth-viz svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  overflow: visible;
+  transform: translate3d(calc(var(--mx) * 6px), calc(var(--my) * 4px), 0);
+  transition: transform 0.7s var(--ease-out);
+}
+.auth-viz .rules line { stroke: var(--dk-line); stroke-width: 1; }
+.auth-viz .track {
+  fill: none;
+  stroke: var(--dk-line-strong);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 2 7;
+}
+.auth-viz .line,
+.auth-viz .seg {
+  fill: none;
+  stroke: var(--dk-fg);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.55s var(--ease-inout), stroke 0.35s;
+}
+.auth-viz .node {
+  fill: var(--dk-bg);
+  stroke: var(--dk-fg-muted);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: fill 0.35s, stroke 0.35s, transform 0.6s var(--ease-spring);
+}
+.auth-viz .node-core {
+  fill: var(--dk-fg);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  transition: transform 0.5s var(--ease-spring), fill 0.35s;
+}
+
+/* HTML labels keep a legible size at every width */
+.auth-viz-label {
+  position: absolute;
+  display: grid;
+  gap: 0.25em;
+  font-family: var(--font-mono);
+  font-size: max(10px, 1.9cqw);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--dk-fg-muted);
+  white-space: nowrap;
+  transform: translate3d(calc(var(--mx) * 10px), calc(var(--my) * 7px), 0);
+  transition: transform 0.7s var(--ease-out), color 0.35s;
+}
+.auth-viz-label .sub { color: var(--dk-fg-soft); letter-spacing: 0.08em; text-transform: none; font-size: 0.9em; }
+.auth-viz-label .sub.is-green { color: var(--text-green); }
+.lbl-start { left: 8%; top: 86%; }
+.lbl-mid { left: 50%; top: 60%; translate: -50% 0; text-align: center; }
+.lbl-end { right: 8%; top: 0; text-align: right; justify-items: end; }
+
+/* Login: secure-connection line */
+.auth-panel[data-state="verifying"] .line,
+.auth-panel[data-state="secure"] .line { stroke-dashoffset: 0; }
+.auth-panel[data-state="secure"] .line { stroke: var(--green-neon, var(--teal-400)); filter: drop-shadow(0 0 4px color-mix(in srgb, var(--green-neon, transparent) 55%, transparent)); }
+.auth-panel[data-state="secure"] .node { stroke: var(--green-neon, var(--teal-400)); }
+.auth-panel[data-state="secure"] .node-core { fill: var(--green-neon, var(--teal-400)); transform: scale(1); }
+.auth-panel[data-state="secure"] .auth-viz-label { color: var(--green-neon, var(--teal-300)); }
+.auth-panel[data-state="error"] .line {
+  stroke-dashoffset: 0;
+  stroke: var(--debit);
+  transition: stroke-dashoffset 0.25s var(--ease-out), stroke 0.15s;
+}
+.auth-panel[data-state="error"] .node { stroke: var(--debit); }
+
+.auth-viz .lock { opacity: 0; transition: opacity 0.3s; }
+.auth-viz .lock-bg { fill: var(--dk-bg); stroke: none; }
+.auth-viz .lock path { fill: none; stroke: var(--green-neon, var(--teal-300)); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.auth-viz .lock path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.3s var(--ease-inout); }
+.auth-viz .lock .lock-body { transition-delay: 0.02s; }
+.auth-viz .lock .lock-shackle { transition-delay: 0.22s; }
+.auth-viz .lock-key {
+  fill: var(--green-neon, var(--teal-300));
+  stroke: none;
+  transform-box: fill-box; transform-origin: center; transform: scale(0);
+  transition: transform 0.35s var(--ease-spring) 0.4s;
+}
+.auth-panel[data-state="secure"] .lock { opacity: 1; }
+.auth-panel[data-state="secure"] .lock path { stroke-dashoffset: 0; }
+.auth-panel[data-state="secure"] .lock-key { transform: scale(1); }
+
+/* Registration: nodes light as fields are filled, segments join completed nodes */
+.auth-viz .node.is-done { stroke: var(--green-neon, var(--mint-400)); transform: scale(1.15); }
+.auth-viz .node.is-done + .node-core { fill: var(--green-neon, var(--mint-400)); transform: scale(1); }
+.auth-viz .seg.is-on { stroke-dashoffset: 0; stroke: var(--green-neon, var(--dk-fg)); }
+.auth-viz-label.is-done { color: var(--dk-fg); }
+.auth-panel[data-state="success"] .seg { stroke: var(--green-neon, var(--teal-400)); stroke-dashoffset: 0; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--green-neon, transparent) 55%, transparent)); }
+.auth-panel[data-state="success"] .node { stroke: var(--green-neon, var(--teal-400)); transform: scale(1.15); }
+.auth-panel[data-state="success"] .node-core { fill: var(--green-neon, var(--teal-400)); transform: scale(1); }
+.auth-panel[data-state="success"] .auth-viz-label { color: var(--green-neon, var(--teal-300)); }
+.auth-panel[data-state="error"] .node.is-error { stroke: var(--debit); }
+.auth-panel[data-state="error"] .node.is-error + .node-core { fill: var(--debit); }
+.auth-panel[data-state="error"] .auth-viz-label.is-error { color: var(--coral-200); }
+
+/* ---------- Compact band under 900px ---------- */
+@media (max-width: 899.98px) {
+  .auth-form { margin-inline: auto; }
+  .auth-panel { gap: 1.25rem; padding: 1.5rem; }
+  .auth-panel::before { display: none; }
+  .auth-viz { width: 100%; }
+  .auth-viz .rules, .auth-viz-label .sub { display: none; }
+  .auth-panel-copy { max-width: none; }
+  .auth-panel-title { font-size: clamp(1.5rem, 1.1rem + 2vw, 2rem); }
+}
+
+/* ---------- Reduced motion: final states visible, no pulses ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .auth-viz svg, .auth-viz-label { transform: none !important; }
+  .auth-panel[data-state="verifying"] .auth-status::before { animation: none; }
+  .auth-status-region .form-status { animation: none; }
+}
